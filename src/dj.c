@@ -6,9 +6,10 @@
     VGA Connections:
     - GPIO 16 <---> VGA Hsync (White)
     - GPIO 17 <---> VGA Vsync (Gray)
-    - GPIO 18 <---> 330 ohm resistor ---> VGA Red
-    - GPIO 19 <---> 330 ohm resistor ---> VGA Green
-    - GPIO 20 <---> 330 ohm resistor ---> VGA Blue
+    - GPIO 18 <---> 470 Ohm Resistor <---> VGA Green
+    - GPIO 19 <---> 330 Ohm Resistor <---> VGA Green
+    - GPIO 20 <---> 330 Ohm Resistor <---> VGA Blue
+    - GPIO 21 <---> 330 Ohm Resistor <---> VGA Red
     - RP2040 GND <---> VGA GND (Black)
 
     DAC Connections:
@@ -31,8 +32,7 @@
     - GPIO 15 <---> Pin 7 (Column 3 - Green)
 
     ADC Connections:
-    - GPIO 26 (ADC 0) <---> Left Potentiometer (0 - 3.3V, White)
-    - GPIO 27 (ADC 1) <---> Right Potentiometer (0 - 3.3V, White)
+    - GPIO 26 (ADC 0) <---> Potentiometer (0 - 3.3V, White)
 
     Serial Connections:
     - GPIO 0 <---> UART RX (Yellow)
@@ -184,7 +184,7 @@ fix15 current_amplitude_1 = 0;      // current amplitude (modified in ISR)
 #define BEEP_DURATION 10500
 #define BEEP_REPEAT_INTERVAL 50000
 
-// Fixed-point multiplier range for pitch bending: [0.94, 1.06]
+// Fixed-point multiplier range for pitch bending: [0.94, 1.06] - half step down/up
 #define FIX15_MIN_PITCH float2fix15(0.94)
 #define FIX15_RANGE_PITCH float2fix15(0.12)
 #define BEND_THRESHOLD float2fix15(0.001)
@@ -207,11 +207,7 @@ uint16_t DAC_data_0; // output value
 
 // ADC constants
 #define ADC0_PIN 26
-#define ADC1_PIN 27
-#define ADC2_PIN 28
 #define ADC0_CHAN 0
-#define ADC1_CHAN 1
-#define ADC2_CHAN 2
 
 // Keypad pin configurations
 #define BASE_KEYPAD_PIN 9
@@ -251,7 +247,7 @@ int prev_key = 0;
 #define X_DIMENSION 640
 #define Y_DIMENSION 480
 
-char current_pressed_note[4] = "X"; // Default to C4
+char current_pressed_note[4] = "X"; // Default to no key pressed
 int current_pressed_drums = 0;      // Default to 0, ranges from [0,5]
 
 // Backing track struct
@@ -377,7 +373,7 @@ void set_current_pressed_note(int note)
         break;
 
     case 2:
-        // G Major: G4, A4, B4, C5, D5, E5, F#5, G5
+        // G Major
         switch (note)
         {
         case 1:
@@ -460,27 +456,13 @@ void send_note_to_vga(MessageType type, char payload)
     return;
 }
 
-/* ===== ADC HELPERS ===== */
+/* ===== ADC HELPER ===== */
 
 void setupADC0()
 {
     adc_init();
     adc_gpio_init(ADC0_PIN);
     adc_select_input(ADC0_CHAN);
-}
-
-void setupADC1()
-{
-    adc_init();
-    adc_gpio_init(ADC1_PIN);
-    adc_select_input(ADC1_CHAN);
-}
-
-void setupADC2()
-{
-    adc_init();
-    adc_gpio_init(ADC2_PIN);
-    adc_select_input(ADC2_CHAN);
 }
 
 /* ===== KEYPAD HELPER ===== */
