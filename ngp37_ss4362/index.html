@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="description" content="DJ Synth Pad: ECE 5730 Final Project">
     <meta charset="UTF-8">
     <title>ECE 5730 Final Project - DJ Mixer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap"
@@ -36,7 +37,7 @@
             font-weight: 600;
         }
 
-        ß nav a:hover {
+        nav a:hover {
             text-decoration: underline;
         }
 
@@ -158,9 +159,9 @@
             execution.</p>
         <p>Watch our final project demo below! </p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/_FUeBRVrDhI?si=O9tPzMPYrR7bxZss"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            title="Final Demo" style="border: none;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>ß
     </section>
 
     <section id="highlevel">
@@ -232,7 +233,7 @@
             potentiometer-based pitch bending, and one for guitar synthesis. The keypad is decoded to trigger piano
             notes, drum samples, scale and instrument switching, and backing track control. Piano notes are generated
             via DDS inside a high-frequency timer ISR, while guitar tones invoke a Karplus-Strong algorithm that uses a
-            circular buffer and custom filtering in<code>karplus_strong.c</code>. Drum and backing tracks are streamed
+            circular buffer and custom filtering in <code>karplus_strong.c</code>. Drum and backing tracks are streamed
             via dual-channel DMA using SPI, with separate channels (A and B) for each of the two speakers.
         </p>
 
@@ -270,7 +271,8 @@
             All <code>.wav</code> samples used in this project, both for drum hits and backing tracks, were sourced from
             copyright-free libraries and are cleared for non-commercial use. We based our synthesis techniques on
             publicly available course materials and research papers, with citations provided in
-            <a href="#appendices">Appendix D</a>.. No proprietary trademarks or patented protocols were reverse-engineered or violated in the
+            <a href="#appendices">Appendix D</a>. No proprietary trademarks or patented protocols were
+            reverse-engineered or violated in the
             course of this project.
         </p>
 
@@ -506,13 +508,13 @@
         </p>
         <p>Below is a video of the C, A, and G piano scales being played via direct digital synthesis:</p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/bUVitBvyheY" title="Piano Scales Demo"
-            frameborder="0"
+            style="border: none;"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
 
         <p>Below is a video of the C, A, and G guitar scales being played via Karplus-Strong synthesis:</p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/W8CnE34RlaI" title="Guitar Scales Demo"
-            frameborder="0"
+            style="border: none;"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
 
@@ -586,7 +588,8 @@
             </audio>
         </div>
 
-        <p> Check out the bonus demo clips in <a href="#appendices">Appendix E</a> for a couple of cool musical performances! </p>
+        <p> Check out the bonus demo clips in <a href="#appendices">Appendix E</a> for a couple of cool musical
+            performances! </p>
 
 
         <h3>Speed</h3>
@@ -672,18 +675,21 @@
 
         <p> Much of the project code was written, debugged, and tested collaboratively, via pair programming.
             However, during asynchronous development, each member had different areas of focus.</p>
-        <p> Siva was primarily responsible for:
-            <li> Integrating the DDS algortihm for piano synthesis</li>
+        <p> Siva was primarily responsible for: </p>
+        <ul>
+            <li> Integrating the DDS algorithm for piano synthesis</li>
             <li> Integrating the Karplus-Strong algorithm for guitar synthesis</li>
             <li> Designing and implementing the original VGA user interface</li>
             <li> Handling multithreading and FIFO messaging </li>
-        </p>
-        <p> Nick was primarily responsible for:
+        </ul>
+
+        <p> Nick was primarily responsible for: </p>
+        <ul>
             <li> Hardware setup and implementation </li>
             <li> Integrating DMA playback for the drums and backing tracks</li>
             <li> Processing user keypad and potentiometer inputs</li>
             <li> Expanding and refining the final VGA user interface </li>
-        </p>
+        </ul>
 
         <p> Nick drafted the report and built the website, and Siva created the schematics/diagrams for the report and
             refined its content.</p>
@@ -711,13 +717,13 @@
 
         <h3>Appendix E: Bonus Videos</h3>
         <p>Here are a couple of videos of us playing around on the DJ Synth Pad!</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/0aDUNd44HOk" title="DJ Pad Demo 1"
-            frameborder="0"
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/0aDUNd44HOk" title="Bonus Demo 1"
+            style="border: none;"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
 
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/_2VrnSMRxgU" title="DJ Pad Demo 2"
-            frameborder="0"
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/_2VrnSMRxgU" title="Bonus Demo 2"
+            style="border: none;"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
     </section>
