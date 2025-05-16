@@ -1,3 +1,3 @@
 # ECE 5730 Final Design Project: DJ Synth Pad
-## Nicholas Papapanou (ngp37) and Sivaraman Sankar (ss4362)
-### Built on source code provided by Professor [V. Hunter Adams](https://vanhunteradams.com)
+#### Nicholas Papapanou (ngp37) and Sivaraman Sankar (ss4362)
+#### Built on source code provided by Professor [V. Hunter Adams](https://vanhunteradams.com)
