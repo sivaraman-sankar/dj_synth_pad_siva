@@ -146,7 +146,7 @@
 
     <section id="intro">
         <h2>Project Introduction</h2>
-        <p> <strong>DJ Synth Pad</strong> is an audio playground on a breadboard, letting users create, mix, and
+        <p> DJ Synth Pad is an audio playground on a breadboard, letting users create, mix, and
             visualize music in real time.</p>
         <p>This project implements a DJ-style synthesizer using the RP2040 microcontroller, enabling users to
             layer piano, guitar, and drum sounds over selectable backing tracks in real time. The system features a 3x4
@@ -183,7 +183,7 @@
         <h3>Background Math</h3>
 
         <p>
-            At the core of our audio system is <strong>fixed-point arithmetic</strong>, which allows us to perform fast,
+            At the core of our audio system is fixed-point arithmetic, which allows us to perform fast,
             fractional math using integer-only operations on the RP2040. We use 16.15 fixed-point formats for
             representing real-valued quantities with high precision and low overhead. This lets us compute
             multiplications, divisions, and filtering operations efficiently within timing constraints, particularly
@@ -191,7 +191,7 @@
         </p>
 
         <p>
-            For piano synthesis, we use <strong>Direct Digital Synthesis (DDS)</strong>, which generates tones by
+            For piano synthesis, we use Direct Digital Synthesis (DDS), which generates tones by
             iteratively incrementing a 32-bit phase accumulator and indexing into a 256-point sine lookup table. The
             increment for a desired frequency <em>F<sub>out</sub></em> is computed as:
             <code>phase_incr = (F<sub>out</sub> × 2<sup>32</sup>) / F<sub>s</sub></code>
@@ -202,7 +202,7 @@
         </p>
 
         <p>
-            For guitar synthesis, we implemented a <strong>Karplus-Strong algorithm</strong> with added low-pass and
+            For guitar synthesis, we implemented a Karplus-Strong algorithm with added low-pass and
             all-pass filtering. Each note is represented by a circular buffer whose length determines the pitch (e.g., a
             buffer length of 76 at 20kHz approximates a C4 note). The buffer is initialized with a pluck waveform — we
             support Gaussian, noise, low-pass filtered noise, and sawtooth — and the output is computed as:
