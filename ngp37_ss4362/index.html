@@ -328,7 +328,7 @@
             DJ Synth Pad’s software architecture is built around the protothreads cooperative multitasking model,
             distributed across the RP2040’s dual cores. Core 0 handles audio synthesis, DMA playback, keypad input, and
             potentiometer-based pitch bending, while Core 1 manages the VGA display and state-driven UI. All major
-            componens are implemented in C using fixed-point arithmetic for fast real-time performance. Audio routines
+            components are implemented in C using fixed-point arithmetic for fast real-time performance. Audio routines
             use interrupt service routines (ISRs) or DMA, and
             UI state is synchronized between cores via multicore FIFO messaging.
         </p>
