@@ -23,16 +23,20 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            text-align: center;
+            /* center all content inside nav */
         }
 
         nav a {
+            display: inline-block;
+            /* necessary for centering */
             color: #fff;
             margin: 0 1em;
             text-decoration: none;
             font-weight: 600;
         }
 
-        nav a:hover {
+        ß nav a:hover {
             text-decoration: underline;
         }
 
@@ -588,10 +592,15 @@
             The system exhibited fast response and seamless concurrency. DMA playback from flash to DAC channels had no
             perceptible latency, and multiple drum samples could be triggered back-to-back or layered over backing
             tracks with no hesitation. VGA UI refreshes were distributed across five protothreads and updated without
-            flicker at a stable ~30 FPS. Audio ISR routines ran at 50 kHz for DDS and 22.05 kHz for DMA, and all
-            protothread execution completed comfortably within timing margins. Notably, when a backing track is playing
-            and multiple drum sounds are overlaid, minor DMA contention can cause a slight flicker or vibrato in the VGA
-            output—an effect we came to view as a visual enhancement rather than a flaw.
+            flicker at a stable ~30 FPS. To support this, we overclocked the RP2040's CPU to 250 MHz in
+            <code>main()</code>,
+            which drastically improved VGA rendering smoothness and reduced visual tearing. Audio ISR routines ran at
+            50 kHz for DDS and 22.05 kHz for DMA, and all protothread execution completed comfortably within timing
+            margins.
+            Notably, when a backing track is playing and multiple drum sounds are overlaid, minor DMA contention can
+            cause a
+            slight flicker or vibrato in the VGA output—an effect we came to view as a visual enhancement rather than a
+            flaw.
         </p>
 
         <h3>Accuracy</h3>

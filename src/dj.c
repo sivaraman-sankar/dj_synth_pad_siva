@@ -240,7 +240,7 @@ int prev_key = 0;
 #define CTRL_CHAN_B 9
 
 // uS per frame
-#define FRAME_RATE 33000 // ~30 fps
+#define FRAME_RATE 33000  // ~30 fps
 #define FRAME_RATE2 66000 // ~60 fps
 
 // Screen dimensions
@@ -961,13 +961,14 @@ static PT_THREAD(protothread_keys(struct pt *pt))
             }
 
             uint16_t color = strcmp(current_pressed_note, note) == 0 ? ORANGE : WHITE;
-            if (strcmp(note, "D4") == 0 || strcmp(note, "G4") == 0 || strcmp(note, "A4") == 0 || 
+            if (strcmp(note, "D4") == 0 || strcmp(note, "G4") == 0 || strcmp(note, "A4") == 0 ||
                 strcmp(note, "D5") == 0 || strcmp(note, "G5") == 0 || strcmp(note, "A5") == 0)
-                {
-                    fillRect(top_x, y_offset, 10, 60, color);  // top portion for keys between two black notes
-                }
-            else {
-                fillRect(top_x, y_offset, 15, 60, color);  // top portion for all other keys
+            {
+                fillRect(top_x, y_offset, 10, 60, color); // top portion for keys between two black notes
+            }
+            else
+            {
+                fillRect(top_x, y_offset, 15, 60, color); // top portion for all other keys
             }
             fillRect(x, y_offset + 60, 20, 40, color); // bottom portion for all keys
         }
@@ -985,7 +986,7 @@ static PT_THREAD(protothread_keys(struct pt *pt))
         PT_YIELD_usec(spare_time);
     }
     PT_END(pt);
-} 
+}
 
 /* ===== DRUM PAD VISUALIZATION VGA THREAD ===== */
 
@@ -1158,13 +1159,17 @@ static PT_THREAD(protothread_vga_state(struct pt *pt))
         fillCircle(x_offset + previous_seek_position, y_offset, 3, BLACK);
 
         // Update seek position
-        if (current_playback_state == PLAY) {
+        if (current_playback_state == PLAY)
+        {
             seek_frame_counter++;
-            if (seek_frame_counter >= track_total_frames[currentTrack]) {
+            if (seek_frame_counter >= track_total_frames[currentTrack])
+            {
                 seek_frame_counter = 0;
             }
             seek_position = (160 * seek_frame_counter) / track_total_frames[currentTrack];
-        } else {
+        }
+        else
+        {
             seek_frame_counter = 0;
             seek_position = 0;
         }
@@ -1186,10 +1191,10 @@ static PT_THREAD(protothread_vga_state(struct pt *pt))
         setTextSize(1);
         setTextColor2(WHITE, BLACK);
         sprintf(screentext, "Backing Track: %s      ",
-            (currentTrack == 0) ? "Drums" :
-            (currentTrack == 1) ? "Jazzy" :
-            (currentTrack == 2) ? "Rock" : 
-            (currentTrack == 3) ? "Mellow" : "None");
+                (currentTrack == 0) ? "Drums" : (currentTrack == 1) ? "Jazzy"
+                                            : (currentTrack == 2)   ? "Rock"
+                                            : (currentTrack == 3)   ? "Mellow"
+                                                                    : "None");
         writeString(screentext);
 
         // Print key signature
