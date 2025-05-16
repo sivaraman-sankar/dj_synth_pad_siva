@@ -194,9 +194,9 @@
         <p>
             For piano synthesis, we use Direct Digital Synthesis (DDS), which generates tones by
             iteratively incrementing a 32-bit phase accumulator and indexing into a 256-point sine lookup table. The
-            increment for a desired frequency <em>F<sub>out</sub></em> is computed as:
+            increment for a desired frequency <code>F<sub>s</sub></code> is computed as:
             <code>phase_incr = (F<sub>out</sub> × 2<sup>32</sup>) / F<sub>s</sub></code>
-            where <em>F<sub>s</sub></em> is the DAC sampling rate. The high bits of the accumulator index into the
+            where <code>F<sub>s</sub></code> is the DAC sampling rate. The high bits of the accumulator index into the
             table, and the output is scaled using a fixed-point amplitude envelope with programmable attack and decay
             profiles. DDS provides stable, real-time tone generation with smooth pitch bending, which we control via a
             potentiometer.
@@ -474,7 +474,7 @@
             and backing track, along with live visuals of key presses and drum hits. Core 1 runs five dedicated
             protothreads that call helper functions from <code>vga16_graphics.c</code> to render text, shapes, and color
             changes to the screen. The piano UI includes a 14-key layout with black and white keys that highlight
-            pressed notes in <code>ORANGE</code>. Notes vary depending on the selected key signature, and the correct
+            pressed notes in orange. Notes vary depending on the selected key signature, and the correct
             labels are rendered dynamically. The drum pad UI features a 2x3 grid with labeled pads that momentarily turn
             white when hit, providing a clear flash for visual emphasis before reverting. A seek bar updates every
             frame, advancing a small circle whose speed is scaled to the total frame length of the current track, stored
